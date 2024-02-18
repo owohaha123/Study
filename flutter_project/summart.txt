@@ -1,0 +1,261 @@
+//stless : 커스텀 위젯 단축어
+
+
+// MaterialApp 위젯? 구글 기준
+    // 그냥 커마하고 싶으면 이거쓰면 됨. 아니면 코드양 증가한다
+    // 구글 st 빼면서 커마하는게 이득
+    return MaterialApp(
+      //1. 텍스트 위젯
+      //home: Text('안녕')
+
+      //2. 아이콘 위젯
+      //home: Icon(Icons.star)
+
+      //3. 이미지 위젯
+      // image 사용 시 pubspec.yaml > flutter 아래에 폴더 등록해주기
+      //home: Image.asset('01.jpg')
+
+      //4. 박스 위젯
+      // 네모박스는 Container() or SizedBox() 사용
+      // flutter 기본단위는 px이 아닌 LP (50LP == 1.2cm)
+      // 기준점을 설정해주지 않아서 화면 전체에 채워짐
+      //home: Container(width: 50, height: 50, color: Colors.blue)
+
+      // Center :내 자식 위젯의 기준점을 중앙으로 설정
+        //home: Center(
+        //  child: Container(width: 50, height: 50, color: Colors.blue),
+        //)
+
+      // 상중하로 나눠주는 위젯
+      /* home: Scaffold(
+        appBar: AppBar(), //상단 들어갈 위젯
+
+        // 여러 위젯 가로로 배치할 땐 Row(children:[]) 세로는 column
+        body: Column(
+          // 자동완성 : ctrl + space
+          //  파라미터 우특에 뭐 넣을지 까먹었다면
+          // 1) 좌측에 들어간 거 대문자로 써보기
+          // 2) 좌측 파라미터에 마우스 올려서 type 확인해보기
+          // 3) 구글링 해보셈
+          // 가로축 정렬
+          mainAxisAlignment: MainAxisAlignment.center,
+          // 세로축 정렬
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Icon(Icons.star),
+            Icon(Icons.star),
+            Icon(Icons.star),
+          ]
+        ),//중
+        bottomNavigationBar: BottomAppBar(child: Text('ddd')),//하
+        )
+        */
+                  // decoration: 찌그레기 속성 바구니 (섬세작업)
+                  // width: double.infinity : 꽉차게
+
+                  콘솔창에 있는 파란 버튼은 DevTool! > 거기서 flutter inspector 탭 보면 구조 볼 수 있음!!!!!
+
+//-------------------------------------------------------------------------
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('금호동3가'),
+          // leading: Icon(Icons.expand_more),
+          actions: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0,10,200,10),
+                child: Icon(Icons.expand_more),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Icon(Icons.search),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Icon(Icons.menu),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(10,0,20,0),
+                child: Icon(Icons.add_alert),
+              )],
+
+        ),
+        body:SizedBox(
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  Image.asset('01.jpg', width: 100, height: 100,),
+                  Container(
+                    padding: EdgeInsets.all(10),
+                        child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(style: TextStyle(fontWeight: FontWeight.w800, fontSize: 18), '캐논 DSLR 100D (단렌즈, 충전기 16기가SD 포함)'),
+                                Text(style: TextStyle(fontSize: 12),'성동구 행당동 / 끌올 10분전'),
+                                Text(style: TextStyle(fontWeight: FontWeight.w700, fontSize: 15), '210,000원'),
+                              ]
+                      ),
+
+                  )
+
+            ],
+          ),
+        ],
+        )
+
+      )
+      )
+    );
+  }
+}
+
+//--------------
+body: Row(
+          children: [
+            // 박스 폭을 나누려면 Flexible() 로 감싸야 함 (flex는 %)
+            //Flexible(child: Container(color: Colors.blue), flex: 3),
+
+            // row 안에서 박스 하나만 꽉 채우고 싶으면 Expanded()
+            // = flex: 1 가진 Flexible
+            Expanded(child: Container(color: Colors.blue)),
+            Container(width: 100, color: Colors.green),
+          ],
+        )
+ // ------------------
+
+
+ import 'package:flutter/cupertino.dart';
+ import 'package:flutter/material.dart';
+
+ void main() {
+   runApp(const MyApp());
+ }
+
+ class MyApp extends StatelessWidget {
+   const MyApp({super.key});
+
+   @override
+   Widget build(BuildContext context) {
+     return MaterialApp(
+       home: Scaffold(
+         appBar: AppBar(
+           title: Text('금호동3가'),
+           // leading: Icon(Icons.expand_more),
+           actions: [
+               Padding(
+                 padding: const EdgeInsets.fromLTRB(0,10,200,10),
+                 child: Icon(Icons.expand_more),
+               ),
+               Padding(
+                 padding: const EdgeInsets.all(10.0),
+                 child: Icon(Icons.search),
+               ),
+               Padding(
+                 padding: const EdgeInsets.all(10.0),
+                 child: Icon(Icons.menu),
+               ),
+               Padding(
+                 padding: const EdgeInsets.fromLTRB(10,0,20,0),
+                 child: Icon(Icons.add_alert),
+               )],
+
+         ),
+         body: Container(
+           height: 150,
+           padding: EdgeInsets.all(10),
+           child: Row(
+             children: [
+               Image.asset('01.jpg', width: 150,),
+               Container(
+                 width: 300,
+                 child: Column(
+                   crossAxisAlignment: CrossAxisAlignment.start,
+                   children: [
+                     Text(style: TextStyle(fontWeight: FontWeight.w800, fontSize: 18), '캐논 DSLR 100D (단렌즈, 충전기 16기가SD 포함)'),
+                     Text(style: TextStyle(fontSize: 12),'성동구 행당동 / 끌올 10분전'),
+                     Text(style: TextStyle(fontWeight: FontWeight.w700, fontSize: 18), '210,000원'),
+                     Row(
+                       mainAxisAlignment: MainAxisAlignment.end,
+                       children: [
+                         Icon(Icons.favorite),
+                         Text('4')
+                       ]
+                     )
+                   ],
+                 ),
+               )
+             ],
+           ),
+         )
+       )
+     );
+   }
+ }
+// -----------------
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+// 변수선언
+var a = SizedBox(
+  child: Text('안녕'),
+);
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(),
+
+        // 레이아웃용 위젯이 길 때? 커스텀 위젯!
+        //body: ShopItem(),
+        body: a,
+      )
+    );
+  }
+}
+
+// ★레이아웃용 위젯이 길 때? 커스텀 위젯!
+// 1. stless 단축어로 위젯 생성 후
+// 2. class 작명해주고
+// 3. return 옆에 축약할 레이아웃 넣어주기
+
+// 궁금할까봐 문법 설명
+class ShopItem extends StatelessWidget { // 커스텀 위젯은 class(변수, 함수 보관함) 로 만든다
+  const ShopItem({super.key}); // class 에 어떤 param을 넣을지 정의하는 부분
+
+  @override//덮어쓰기
+  Widget build(BuildContext context) {// class 안에 build 라는 함수 만드는 부분 (build(context)만 써도 됨)
+    return SizedBox(//축약할 위젯
+      child: Text('안녕'),
+    );
+  }
+}
+// 또는 변수, 함수로도 축약가능 (상단 참고)
+// but 성능에 문제가 있을 수 잇음
+// 변수,함수로 선언해도 되는 것 : 변하지 않는 UI (ex. 상단고정바, 로고 등)
+// 그 외에 변하는 것은 커스텀 위젯으로 만들어주자!
+
+// 커스텀 위젯 단점 : state 관리가 힘들어질 수 있음
+// 커스텀 위젯으로 만들기 좋은 것 : 재사용 많은 ui들, 큰 페이지들
+
+
